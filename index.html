@@ -9,21 +9,29 @@
     <style>
         body{
             margin: 10% 4% 4% 4%;
+            /* C10 */
+            background:rgb(212, 236, 236);
         }
-        .userContainer{
+        
+        .userContainer {
+            
             display: flex;
             height: 25em;
             align-items: center;
             justify-content: center;
         }
-        .invoiceContainer{
+        .invoiceContainer {
             margin-top: 4em;
             display: flex;
             flex-wrap: wrap;
             width:100%;
             height: auto;
         }
-        .userProfile{
+        .userProfile {
+            /* C1  */
+            border-radius: 25px;
+            /* C2 */
+            background:  rgb(187, 194, 131);
             border: 1px solid black;
             display: flex;
             width: 60%;
@@ -32,31 +40,48 @@
         .user{
             height: auto;
         }
-        #picContainer{
+        #picContainer {
+            /* C8 */
+            border: 3px solid white;
+            /* C9 */
+            border-radius: 25px;
             width: 40%;
             margin: 8% 0% 8% 3%;
-            background-color: #4D6076;
         }
-        #infoContainer{
+        #infoContainer {
+            /* C7 */
+            text-shadow: 0 0 3px rgb(6, 33, 44);
             margin: 5% 2% 2% 2%;
             width: 60%;
             font-family: Nobile;
 	        font-size: 16px;
+            
         }
         p{
             font-size: 22px;
+            /* C6 */
+            text-shadow: 0 0 3px rgb(88, 117, 143);
+            
         }
-        img{
+        img {
             position: relative;
             width: 100%;
             height: 100%;
+            
+        
         }
-        .invoice{
-            border: 1px solid black;
+        .invoice {
+              /* C3  */
+              border-radius: 25px;
+            /* C4 */
+            background:   rgb(185, 192, 136);
+            /* C5 */
+            border: 2px solid rgb(82, 82, 82);
             margin: 6% 3% 0% 3%;
             padding: 2%;
             width: 250px;
             height: auto;
+            
             
         }
         .invoice > p{
@@ -68,15 +93,33 @@
     </style>
 </head>
 <body>
-     
+    <div class="userContainer">
+     <div class="userProfile">
+         <div class="user" id="picContainer">
+             <img src="C:\Users\FVI Student\Documents\KatsLogo.png" alt="Katslogo">
+         </div>
+         <div class="user" id="infoContainer">
+             Name: 
+             <p class="name"></p>
+             Company Name: 
+             <p class="companyName"></p>
+             Address: 
+             <p class="address"></p>
+             Email: 
+             <p class="email"></p>
+         </div>
+     </div>
+    </div>
+    <p>Invoice</p>
+    <div class="invoiceContainer"></div>     
     <script>
         //Fake it til you make it Database
         var user = {
-            name: ,
-            companyName: ,
-            address: ,
-            email: ,
-            picture: 
+            name: "Katleen Ludger",
+            companyName: "TechLaunch",
+            address: "8400 NW 36th St #450, Doral, FL 33166",
+            email: "kludger@techlaunch.io",
+            picture: ""
         }
 
         var invoices = [
@@ -112,27 +155,32 @@
 
         
         //element selectors
+        document.querySelector(".name").textContent = user.name
+        document.querySelector(".companyName").textContent = user.companyName
+        document.querySelector(".address").textContent = user.address
+        document.querySelector(".email").textContent = user.email
+        
 
-        //adding invoices
+        // adding invoices
         for(var i=0; i<invoices.length; i++){
             document.querySelector('.invoiceContainer').innerHTML += `
             <div class="invoice" id=${invoices[i].inv_id}>
                 Invoice #:   <br/>    
-                <p>${} </p>
+                <p>${invoices[i].inv_id} </p>
                 Company Name:   <br /> 
-                <p>${} </p>
+                <p>${invoices[i].companyName} </p>
                 Date:  <br />
-                <p> ${} </p>
+                <p> ${invoices[i].date} </p>
                 Order:  <br />   
-                <p>${} </p>
+                <p>${invoices[i].order} </p>
                 Amount:   <br />     
-                <p>${} </p>
+                <p>${invoices[i].amount} </p>
                 Cost:       <br />    
-                <p>$${} </p>
+                <p>$${invoices[i].cost} </p>
                 Paid:       <br />   
-                <p> $${} </p>
+                <p> $${invoices[i].paid} </p>
                 Owed:        <br />   
-                <p>$${} </p>
+                <p>$${invoices[i].cost - invoices[i].paid} </p>
             </div>
             `
         }
